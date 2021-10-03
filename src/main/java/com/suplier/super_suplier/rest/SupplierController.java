@@ -38,6 +38,11 @@ public class SupplierController {
         return ResponseEntity.ok(supplierService.get(id));
     }
 
+    @GetMapping("/{suplierName}")
+    public ResponseEntity<SupplierDTO> getSupplier(@PathVariable final String supplierName) {
+        return ResponseEntity.ok(supplierService.get(supplierName));
+    }
+
     @PostMapping
     public ResponseEntity<UUID> createSupplier(@RequestBody @Valid final SupplierDTO supplierDTO) {
         return new ResponseEntity<>(supplierService.create(supplierDTO), HttpStatus.CREATED);

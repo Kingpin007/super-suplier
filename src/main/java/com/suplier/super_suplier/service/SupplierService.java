@@ -33,6 +33,12 @@ public class SupplierService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    public SupplierDTO get(final String supplierName) {
+        return supplierRepository.findBySupplierName(supplierName)
+                .map(supplier -> mapToDTO(supplier, new SupplierDTO()))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     public UUID create(final SupplierDTO supplierDTO) {
         final Supplier supplier = new Supplier();
         mapToEntity(supplierDTO, supplier);
